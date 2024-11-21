@@ -28,17 +28,18 @@ public class Cell {
 	@Override
 	public String toString() {
 		if (isHit) {
-			return hasBoat ? "X" : "O";
+			return hasBoat ? "\u2693" : "\uD83D\uDCA5";
 		} else {
-			return "~";
+			return "\uD83C\uDF0A";
 		}
 	}
 
 	public String toString(boolean choice) {
 		if (hasBoat) {
-			return "T";
+			return "\uD83D\uDEA2";
 		} else {
-			return "~";
+			return "\uD83C\uDF0A";
 		}
 	}
+
 }

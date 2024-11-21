@@ -5,10 +5,12 @@ import java.util.ArrayList;
 public class Boat {
 	private BoatType type;
 	private ArrayList<int[]> coordinates;
+	private int size;
 
 	public Boat(BoatType type) {
 		this.type = type;
 		this.coordinates = new ArrayList<>();
+		this.size = type.getSize();
 	}
 
 	public void addCoordinate(int x, int y) {
@@ -24,6 +26,18 @@ public class Boat {
 			}
 		}
 		return true;
+	}
+
+	public boolean isSunk(int x, int y) {
+		for (int[] coord : coordinates) {
+			if (coord[0] == x && coord[1] == y) {
+				--size;
+			}
+		}
+		if (size == 0)
+			return true;
+		else
+			return false;
 	}
 
 	public String getName() {

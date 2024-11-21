@@ -14,6 +14,20 @@ public class Menu {
 	static Scanner sc = new Scanner(System.in);
 
 	public void Menu() {
+		System.out.println("     _______. _______     ___                                   \r\n"
+				+ "    /       ||   ____|   /   \\                                  \r\n"
+				+ "   |   (----`|  |__     /  ^  \\                                 \r\n"
+				+ "    \\   \\    |   __|   /  /_\\  \\                                \r\n"
+				+ ".----)   |   |  |____ /  _____  \\                               \r\n"
+				+ "|_______/    |_______/__/     \\__\\                              \r\n"
+				+ "                                                                \r\n"
+				+ ".______        ___   .___________.___________. __       _______ \r\n"
+				+ "|   _  \\      /   \\  |           |           ||  |     |   ____|\r\n"
+				+ "|  |_)  |    /  ^  \\ `---|  |----`---|  |----`|  |     |  |__   \r\n"
+				+ "|   _  <    /  /_\\  \\    |  |        |  |     |  |     |   __|  \r\n"
+				+ "|  |_)  |  /  _____  \\   |  |        |  |     |  `----.|  |____ \r\n"
+				+ "|______/  /__/     \\__\\  |__|        |__|     |_______||_______|");
+		System.out.println();
 		System.out.println("==================================");
 		System.out.println("|              Menu              |");
 		System.out.println("==================================");
@@ -57,6 +71,7 @@ public class Menu {
 		System.out.println("Bạn muốn đặt tàu thủ công hay tự động (true/false)");
 		boolean choice_player1 = sc.nextBoolean();
 		beforePlaying.setUpBoatsForPlayer(player1, choice_player1);
+		System.out.println("Đặt tàu cho người chơi 2");
 		System.out.println("Bạn muốn đặt tàu thủ công hay tự động (true/false)");
 		boolean choice_player2 = sc.nextBoolean();
 		beforePlaying.setUpBoatsForOpponent(player2, choice_player2);

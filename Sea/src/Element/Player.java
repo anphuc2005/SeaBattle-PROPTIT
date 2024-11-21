@@ -29,10 +29,18 @@ public class Player {
 	}
 
 	public void mapPlaying() {
-		System.out.println("Bản đồ của " + namePlayer + ":");
+		Cot = 1;
+		Hang = 'A';
+
+		System.out.print("   ");
+		for (int j = 1; j <= mapPlayer[0].length; ++j) {
+			System.out.printf("%2d ", j);
+		}
+		System.out.println();
 		for (int i = 0; i < mapPlayer.length; i++) {
+			System.out.printf("%2c ", Hang++);
 			for (int j = 0; j < mapPlayer[i].length; j++) {
-				System.out.print(mapPlayer[i][j].toString() + " ");
+				System.out.printf("%3s", mapPlayer[i][j].toString());
 			}
 			System.out.println();
 		}
@@ -42,18 +50,17 @@ public class Player {
 		Cot = 1;
 		Hang = 'A';
 
-		System.out.println("Bản đồ của " + namePlayer + ":");
-		System.out.print("  ");
+		System.out.print("   ");
 		for (int j = 1; j <= mapPlayer[0].length; ++j) {
-			System.out.print(Cot++ + " ");
+			System.out.printf("%2d ", j);
 		}
 		System.out.println();
 		for (int i = 0; i < mapPlayer.length; i++) {
-			System.out.print(Hang++ + " "); // Print row label
+			System.out.printf("%2c ", Hang++);
 			for (int j = 0; j < mapPlayer[i].length; j++) {
-				System.out.print(mapPlayer[i][j].toString(true) + " "); // Print cell content
+				System.out.printf("%3s", mapPlayer[i][j].toString(true));
 			}
-			System.out.println(); // Move to the next row
+			System.out.println();
 		}
 	}
 
