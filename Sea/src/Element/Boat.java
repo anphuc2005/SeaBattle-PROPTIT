@@ -6,6 +6,7 @@ public class Boat {
 	private BoatType type;
 	private ArrayList<int[]> coordinates;
 	private int size;
+	private boolean hadSunk;
 
 	public Boat(BoatType type) {
 		this.type = type;
@@ -29,14 +30,18 @@ public class Boat {
 	}
 
 	public boolean isSunk(int x, int y) {
+		if (hadSunk) {
+			return false;
+		}
 		for (int[] coord : coordinates) {
 			if (coord[0] == x && coord[1] == y) {
 				--size;
 			}
 		}
-		if (size == 0)
+		if (size == 0) {
+			hadSunk = true;
 			return true;
-		else
+		} else
 			return false;
 	}
 

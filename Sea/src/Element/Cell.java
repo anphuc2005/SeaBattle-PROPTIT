@@ -1,5 +1,7 @@
 package Element;
 
+import Playing.Color;
+
 public class Cell {
 	private boolean isHit;
 	private boolean hasBoat;
@@ -28,17 +30,17 @@ public class Cell {
 	@Override
 	public String toString() {
 		if (isHit) {
-			return hasBoat ? "\u2693" : "\uD83D\uDCA5";
+			return hasBoat ? Color.red + " X" + Color.ANSI_Reset : Color.purple + " O" + Color.ANSI_Reset;
 		} else {
-			return "\uD83C\uDF0A";
+			return "~";
 		}
 	}
 
 	public String toString(boolean choice) {
 		if (hasBoat) {
-			return "\uD83D\uDEA2";
+			return Color.blue + " T" + Color.ANSI_Reset;
 		} else {
-			return "\uD83C\uDF0A";
+			return "~";
 		}
 	}
 

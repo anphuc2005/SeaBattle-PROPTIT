@@ -8,25 +8,33 @@ import Element.Cell;
 import Element.Player;
 import Element.PlayerOpponent;
 import Playing.BeforePlaying;
+import Playing.ClearConsole;
+import Playing.Color;
 import Playing.GameController;
 
 public class Menu {
 	static Scanner sc = new Scanner(System.in);
+	static ClearConsole clear = new ClearConsole();
 
 	public void Menu() {
-		System.out.println("     _______. _______     ___                                   \r\n"
-				+ "    /       ||   ____|   /   \\                                  \r\n"
-				+ "   |   (----`|  |__     /  ^  \\                                 \r\n"
-				+ "    \\   \\    |   __|   /  /_\\  \\                                \r\n"
-				+ ".----)   |   |  |____ /  _____  \\                               \r\n"
-				+ "|_______/    |_______/__/     \\__\\                              \r\n"
-				+ "                                                                \r\n"
-				+ ".______        ___   .___________.___________. __       _______ \r\n"
-				+ "|   _  \\      /   \\  |           |           ||  |     |   ____|\r\n"
-				+ "|  |_)  |    /  ^  \\ `---|  |----`---|  |----`|  |     |  |__   \r\n"
-				+ "|   _  <    /  /_\\  \\    |  |        |  |     |  |     |   __|  \r\n"
-				+ "|  |_)  |  /  _____  \\   |  |        |  |     |  `----.|  |____ \r\n"
-				+ "|______/  /__/     \\__\\  |__|        |__|     |_______||_______|");
+		System.out.println(Color.cyan + " ________  _______   ________                                     \r\n"
+				+ "|\\   ____\\|\\  ___ \\ |\\   __  \\                                    \r\n"
+				+ "\\ \\  \\___|\\ \\   __/|\\ \\  \\|\\  \\                                   \r\n"
+				+ " \\ \\_____  \\ \\  \\_|/_\\ \\   __  \\                                  \r\n"
+				+ "  \\|____|\\  \\ \\  \\_|\\ \\ \\  \\ \\  \\                                 \r\n"
+				+ "    ____\\_\\  \\ \\_______\\ \\__\\ \\__\\                                \r\n"
+				+ "   |\\_________\\|_______|\\|__|\\|__|                                \r\n"
+				+ "   \\|_________|                                                   \r\n"
+				+ "                                                                  \r\n"
+				+ "                                                                  \r\n"
+				+ " ________  ________  _________  _________  ___       _______      \r\n"
+				+ "|\\   __  \\|\\   __  \\|\\___   ___\\\\___   ___\\\\  \\     |\\  ___ \\     \r\n"
+				+ "\\ \\  \\|\\ /\\ \\  \\|\\  \\|___ \\  \\_\\|___ \\  \\_\\ \\  \\    \\ \\   __/|    \r\n"
+				+ " \\ \\   __  \\ \\   __  \\   \\ \\  \\     \\ \\  \\ \\ \\  \\    \\ \\  \\_|/__  \r\n"
+				+ "  \\ \\  \\|\\  \\ \\  \\ \\  \\   \\ \\  \\     \\ \\  \\ \\ \\  \\____\\ \\  \\_|\\ \\ \r\n"
+				+ "   \\ \\_______\\ \\__\\ \\__\\   \\ \\__\\     \\ \\__\\ \\ \\_______\\ \\_______\\\r\n"
+				+ "    \\|_______|\\|__|\\|__|    \\|__|      \\|__|  \\|_______|\\|_______|" + Color.ANSI_Reset);
+
 		System.out.println();
 		System.out.println("==================================");
 		System.out.println("|              Menu              |");
@@ -43,6 +51,7 @@ public class Menu {
 	}
 
 	public void StartGame() {
+
 		System.out.println("Nhập kích cỡ của bảng");
 		int size = sc.nextInt();
 
@@ -71,13 +80,15 @@ public class Menu {
 		System.out.println("Bạn muốn đặt tàu thủ công hay tự động (true/false)");
 		boolean choice_player1 = sc.nextBoolean();
 		beforePlaying.setUpBoatsForPlayer(player1, choice_player1);
+		clear.clearConsole();
 		System.out.println("Đặt tàu cho người chơi 2");
 		System.out.println("Bạn muốn đặt tàu thủ công hay tự động (true/false)");
 		boolean choice_player2 = sc.nextBoolean();
 		beforePlaying.setUpBoatsForOpponent(player2, choice_player2);
+		clear.clearConsole();
 
 		System.out.println("\nTất cả tàu đã được đặt. Trò chơi bắt đầu!");
-
+		clear.clearConsole();
 		GameController gameController = new GameController(player1, player2);
 
 		gameController.startGame();

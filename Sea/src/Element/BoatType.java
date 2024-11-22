@@ -1,7 +1,7 @@
 package Element;
 
 public enum BoatType {
-	PATROL_BOAT("Tàu tuần tra", 2, 2), SUBMARINE("Tàu ngầm", 3, 1), DESTROYER_BOAT("Tàu khu trục", 4, 1),
+	PATROL_BOAT1("Tàu tuần tra", 2, 2), SUBMARINE("Tàu ngầm", 3, 1), DESTROYER_BOAT("Tàu khu trục", 4, 1),
 	BATTLE_SHIP("Tàu chiến hạm", 5, 1);
 
 	private final String name;

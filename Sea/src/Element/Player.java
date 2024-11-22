@@ -31,36 +31,46 @@ public class Player {
 	public void mapPlaying() {
 		Cot = 1;
 		Hang = 'A';
-
 		System.out.print("   ");
 		for (int j = 1; j <= mapPlayer[0].length; ++j) {
-			System.out.printf("%2d ", j);
+			System.out.printf("| %2d  ", j);
 		}
-		System.out.println();
+		System.out.println("|");
+		System.out.print("   ");
+		for (int j = 1; j <= mapPlayer[0].length; ++j) {
+			System.out.print("+-----");
+		}
+		System.out.println("+");
+
 		for (int i = 0; i < mapPlayer.length; i++) {
-			System.out.printf("%2c ", Hang++);
+			System.out.printf(" %c ", Hang++);
 			for (int j = 0; j < mapPlayer[i].length; j++) {
-				System.out.printf("%3s", mapPlayer[i][j].toString());
+				System.out.printf("| %2s  ", mapPlayer[i][j].toString());
 			}
-			System.out.println();
+			System.out.println("|");
 		}
 	}
 
 	public void mapSetUp() {
 		Cot = 1;
 		Hang = 'A';
-
 		System.out.print("   ");
 		for (int j = 1; j <= mapPlayer[0].length; ++j) {
-			System.out.printf("%2d ", j);
+			System.out.printf("| %2d  ", j);
 		}
-		System.out.println();
+		System.out.println("|");
+		System.out.print("   ");
+		for (int j = 1; j <= mapPlayer[0].length; ++j) {
+			System.out.print("+-----");
+		}
+		System.out.println("+");
+
 		for (int i = 0; i < mapPlayer.length; i++) {
-			System.out.printf("%2c ", Hang++);
+			System.out.printf(" %c ", Hang++);
 			for (int j = 0; j < mapPlayer[i].length; j++) {
-				System.out.printf("%3s", mapPlayer[i][j].toString(true));
+				System.out.printf("| %2s  ", mapPlayer[i][j].toString(true));
 			}
-			System.out.println();
+			System.out.println("|");
 		}
 	}
 

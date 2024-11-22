@@ -7,9 +7,11 @@ import Element.Player;
 import Element.PlayerOpponent;
 
 public class GameController {
+	static ClearConsole clear = new ClearConsole();
 	static Scanner sc = new Scanner(System.in);
 	private Player player1;
 	private PlayerOpponent player2;
+	boolean isGameOver;
 
 	public GameController(Player player1, PlayerOpponent player2) {
 		this.player1 = player1;
@@ -17,10 +19,9 @@ public class GameController {
 	}
 
 	public void startGame() {
-		boolean isGameOver = false;
 		int turn = 0;
 
-		while (!isGameOver) {
+		while (true) {
 			if (turn == 0) {
 				System.out.println("Chọn chức năng của bạn");
 				System.out.println("1. Xem map của đối thủ");
@@ -34,9 +35,12 @@ public class GameController {
 					hit = takeTurn(player1, player2);
 					break;
 				}
+				if (isGameOver == true)
+					break;
 				if (hit) {
 					System.out.println("Người chơi 1 được bắn tiếp!");
 				} else {
+					clear.clearConsole();
 					turn = 1;
 				}
 			} else {
@@ -52,9 +56,12 @@ public class GameController {
 					hit = takeTurn(player2, player1);
 					break;
 				}
+				if (isGameOver == true)
+					break;
 				if (hit) {
 					System.out.println("Người chơi 2 được bắn tiếp!");
 				} else {
+					clear.clearConsole();
 					turn = 0;
 				}
 			}
@@ -81,24 +88,48 @@ public class GameController {
 
 		if (opponent.getMapPlayer()[x][y].hasBoat()) {
 			opponent.getMapPlayer()[x][y].setHit(true);
-			System.out.println("Trúng tàu!");
+			System.out.println(Color.red + " __    __   __  .___________.\r\n" + "|  |  |  | |  | |           |\r\n"
+					+ "|  |__|  | |  | `---|  |----`\r\n" + "|   __   | |  |     |  |     \r\n"
+					+ "|  |  |  | |  |     |  |     \r\n" + "|__|  |__| |__|     |__|     " + Color.ANSI_Reset);
 			opponent.mapPlaying();
 
 			for (Boat boat : opponent.getBoats()) {
-				if (boat.isSunk(x, y) && boat.isDestroyed(opponent.getMapPlayer())) {
-					System.out.println("Tàu " + boat.getName() + " đã bị chìm!");
+				if (boat.isSunk(x, y)) {
+					System.out.println(Color.blue + "     _______. __    __  .__   __.  __  ___\r\n"
+							+ "    /       ||  |  |  | |  \\ |  | |  |/  /\r\n"
+							+ "   |   (----`|  |  |  | |   \\|  | |  '  / \r\n"
+							+ "    \\   \\    |  |  |  | |  . `  | |    <  \r\n"
+							+ ".----)   |   |  `--'  | |  |\\   | |  .  \\ \r\n"
+							+ "|_______/     \\______/  |__| \\__| |__|\\__\\" + Color.ANSI_Reset);
+					System.out.println(Color.purple + "Tàu " + boat.getName() + " đã bị chìm!" + Color.ANSI_Reset);
+
+					clear.clearConsole();
 				}
 			}
 
 			if (checkGameOver(opponent)) {
 				System.out.println("Tất cả tàu của " + opponent.getNamePlayer() + " đã bị tiêu diệt!");
+				System.out.println(
+						Color.yellow + "____    ____  ______    __    __     ____    __    ____  __  .__   __.\r\n"
+								+ "\\   \\  /   / /  __  \\  |  |  |  |    \\   \\  /  \\  /   / |  | |  \\ |  |\r\n"
+								+ " \\   \\/   / |  |  |  | |  |  |  |     \\   \\/    \\/   /  |  | |   \\|  |\r\n"
+								+ "  \\_    _/  |  |  |  | |  |  |  |      \\            /   |  | |  . `  |\r\n"
+								+ "    |  |    |  `--'  | |  `--'  |       \\    /\\    /    |  | |  |\\   |\r\n"
+								+ "    |__|     \\______/   \\______/         \\__/  \\__/     |__| |__| \\__|"
+								+ Color.ANSI_Reset);
+				isGameOver = true;
 				return true;
 			}
 
 			return true;
 		} else {
 			opponent.getMapPlayer()[x][y].setHit(true);
-			System.out.println("Bắn trượt!");
+			System.out.println(Color.green + ".___  ___.  __       _______.     _______.\r\n"
+					+ "|   \\/   | |  |     /       |    /       |\r\n"
+					+ "|  \\  /  | |  |    |   (----`   |   (----`\r\n"
+					+ "|  |\\/|  | |  |     \\   \\        \\   \\    \r\n"
+					+ "|  |  |  | |  | .----)   |   .----)   |   \r\n" + "|__|  |__| |__| |_______/    |_______/    "
+					+ Color.ANSI_Reset);
 			opponent.mapPlaying();
 			return false;
 		}
