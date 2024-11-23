@@ -10,8 +10,8 @@ import Element.Player;
 import Element.PlayerOpponent;
 
 public class BeforePlaying {
-	private static final Scanner sc = new Scanner(System.in);
-	private static final Random random = new Random();
+	private static Scanner sc = new Scanner(System.in);
+	private static Random random = new Random();
 
 	public void setUpBoatsForPlayer(Player player, boolean checkTypeOfSetUp) {
 		for (BoatType type : BoatType.values()) {
@@ -21,12 +21,12 @@ public class BeforePlaying {
 				if (checkTypeOfSetUp) {
 					while (!placed) {
 						System.out.print("Nhập tọa độ đầu (x, y): ");
-						int x = sc.nextInt();
-						int y = sc.nextInt();
+						int x = Integer.parseInt(sc.nextLine());
+						int y = Integer.parseInt(sc.nextLine());
 						--x;
 						--y;
 						System.out.print("Chọn hướng (1. Ngang, 2. Dọc): ");
-						int direction = sc.nextInt();
+						int direction = Integer.parseInt(sc.nextLine());
 
 						if (isValidPlacement(player.getMapPlayer(), x, y, type.getSize(), direction)) {
 							placeBoat(player, new Boat(type), x, y, direction);
@@ -76,12 +76,12 @@ public class BeforePlaying {
 				if (checkTypeOfSetUp) {
 					while (!placed) {
 						System.out.print("Nhập tọa độ đầu (x, y): ");
-						int x = sc.nextInt();
-						int y = sc.nextInt();
+						int x = Integer.parseInt(sc.nextLine());
+						int y = Integer.parseInt(sc.nextLine());
 						--x;
 						--y;
 						System.out.print("Chọn hướng (1. Ngang, 2. Dọc): ");
-						int direction = sc.nextInt();
+						int direction = Integer.parseInt(sc.nextLine());
 
 						if (isValidPlacement(player.getMapPlayer(), x, y, type.getSize(), direction)) {
 							placeBoat(player, new Boat(type), x, y, direction);

@@ -43,7 +43,7 @@ public class Menu {
 		System.out.println("| 2. Cancel                      |");
 		System.out.println("==================================");
 		System.out.print("--> Enter your choice: ");
-		int choice = sc.nextInt();
+		int choice = Integer.parseInt(sc.nextLine());
 		if (choice == 1) {
 			StartGame();
 		} else if (choice == 2)
@@ -53,44 +53,58 @@ public class Menu {
 	public void StartGame() {
 
 		System.out.println("Nhập kích cỡ của bảng");
-		int size = sc.nextInt();
+		int size = Integer.parseInt(sc.nextLine());
 
-		Cell[][] map1 = new Cell[size][size];
-		Cell[][] map2 = new Cell[size][size];
+		Cell[][] mapPlayer1 = new Cell[size][size];
+		Cell[][] mapPlayer2 = new Cell[size][size];
 
 		for (int i = 0; i < size; i++) {
 			for (int j = 0; j < size; j++) {
-				map1[i][j] = new Cell();
-				map2[i][j] = new Cell();
+				mapPlayer1[i][j] = new Cell();
+				mapPlayer2[i][j] = new Cell();
 			}
 		}
 		ArrayList<Boat> boats1 = new ArrayList<>();
 		ArrayList<Boat> boats2 = new ArrayList<>();
 		System.out.println("Nhập tên người chơi 1:");
-		sc.nextLine();
 		String nguoi_choi_1 = sc.nextLine();
-		Player player1 = new Player(nguoi_choi_1, boats1, map1);
+		Player player1 = new Player(nguoi_choi_1, boats1, mapPlayer1);
 
 		System.out.println("Nhập tên người chơi 2:");
 		String nguoi_choi_2 = sc.nextLine();
-		PlayerOpponent player2 = new PlayerOpponent(nguoi_choi_2, boats2, map2);
+		PlayerOpponent player2 = new PlayerOpponent(nguoi_choi_2, boats2, mapPlayer2);
 
 		BeforePlaying beforePlaying = new BeforePlaying();
 		System.out.println("Đặt tàu cho người chơi 1");
-		System.out.println("Bạn muốn đặt tàu thủ công hay tự động (true/false)");
-		boolean choice_player1 = sc.nextBoolean();
+		System.out.println("Bạn muốn đặt tàu thủ công hay tự động ");
+		System.out.println("1. Thủ công");
+		System.out.println("2. Tự động");
+
+		int choice_1 = Integer.parseInt(sc.nextLine());
+		boolean choice_player1;
+		if (choice_1 == 1)
+			choice_player1 = true;
+		else
+			choice_player1 = false;
 		beforePlaying.setUpBoatsForPlayer(player1, choice_player1);
 		clear.clearConsole();
+
 		System.out.println("Đặt tàu cho người chơi 2");
-		System.out.println("Bạn muốn đặt tàu thủ công hay tự động (true/false)");
-		boolean choice_player2 = sc.nextBoolean();
+		System.out.println("Bạn muốn đặt tàu thủ công hay tự động ");
+		System.out.println("1. Thủ công");
+		System.out.println("2. Tự động");
+		int choice_2 = Integer.parseInt(sc.nextLine());
+		boolean choice_player2;
+		if (choice_2 == 1)
+			choice_player2 = true;
+		else
+			choice_player2 = false;
 		beforePlaying.setUpBoatsForOpponent(player2, choice_player2);
 		clear.clearConsole();
 
 		System.out.println("\nTất cả tàu đã được đặt. Trò chơi bắt đầu!");
 		clear.clearConsole();
 		GameController gameController = new GameController(player1, player2);
-
 		gameController.startGame();
 
 		System.out.println("Trò chơi kết thúc!");

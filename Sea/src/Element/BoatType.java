@@ -1,17 +1,17 @@
 package Element;
 
 public enum BoatType {
-	PATROL_BOAT1("Tàu tuần tra", 2, 2), SUBMARINE("Tàu ngầm", 3, 1), DESTROYER_BOAT("Tàu khu trục", 4, 1),
+	PATROL_BOAT("Tàu tuần tra", 2, 2), SUBMARINE("Tàu ngầm", 3, 1), DESTROYER_BOAT("Tàu khu trục", 4, 1),
 	BATTLE_SHIP("Tàu chiến hạm", 5, 1);
 
 	private final String name;
 	private final int size;
-	private final int so_luong;
+	private final int soLuong;
 
 	BoatType(String name, int size, int quantity) {
 		this.name = name;
 		this.size = size;
-		this.so_luong = quantity;
+		this.soLuong = quantity;
 	}
 
 	public String getName() {
@@ -23,6 +23,6 @@ public enum BoatType {
 	}
 
 	public int getSoLuong() {
-		return so_luong;
+		return soLuong;
 	}
 }

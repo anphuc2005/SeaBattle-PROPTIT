@@ -1,7 +1,6 @@
 package Element;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Player {
 	static char Hang = 'A';
@@ -9,6 +8,7 @@ public class Player {
 	private String namePlayer;
 	private ArrayList<Boat> boats;
 	private Cell[][] mapPlayer;
+	private int numOfShip;
 
 	public Player(String namePlayer, ArrayList<Boat> boats, Cell[][] mapPlayer) {
 		this.namePlayer = namePlayer;
@@ -28,73 +28,32 @@ public class Player {
 		return mapPlayer;
 	}
 
-	public void mapPlaying() {
-		Cot = 1;
-		Hang = 'A';
-		System.out.print("   ");
-		for (int j = 1; j <= mapPlayer[0].length; ++j) {
-			System.out.printf("| %2d  ", j);
-		}
-		System.out.println("|");
-		System.out.print("   ");
-		for (int j = 1; j <= mapPlayer[0].length; ++j) {
-			System.out.print("+-----");
-		}
-		System.out.println("+");
+	public int getNumOfShip() {
+		return numOfShip;
+	}
 
-		for (int i = 0; i < mapPlayer.length; i++) {
-			System.out.printf(" %c ", Hang++);
-			for (int j = 0; j < mapPlayer[i].length; j++) {
-				System.out.printf("| %2s  ", mapPlayer[i][j].toString());
-			}
-			System.out.println("|");
-		}
+	public void setNumOfShip(int numOfShip) {
+		this.numOfShip = numOfShip;
+	}
+
+	public void mapPlaying() {
+		ManagePlayer.mapWhilePlaying(mapPlayer);
 	}
 
 	public void mapSetUp() {
-		Cot = 1;
-		Hang = 'A';
-		System.out.print("   ");
-		for (int j = 1; j <= mapPlayer[0].length; ++j) {
-			System.out.printf("| %2d  ", j);
-		}
-		System.out.println("|");
-		System.out.print("   ");
-		for (int j = 1; j <= mapPlayer[0].length; ++j) {
-			System.out.print("+-----");
-		}
-		System.out.println("+");
+		ManagePlayer.mapWhileSetUp(mapPlayer);
+	}
 
-		for (int i = 0; i < mapPlayer.length; i++) {
-			System.out.printf(" %c ", Hang++);
-			for (int j = 0; j < mapPlayer[i].length; j++) {
-				System.out.printf("| %2s  ", mapPlayer[i][j].toString(true));
-			}
-			System.out.println("|");
-		}
+	public void mapPlayingAfterShot() {
+		ManagePlayer.mapWhilePlayingAfterShot(mapPlayer);
 	}
 
 	public boolean acceptedCoordinates(int x, int y) {
-		System.out.println("Kiểm tra tọa độ hợp lệ...");
-		if (x >= 0 && x < mapPlayer.length && y >= 0 && y < mapPlayer[0].length) {
-			return true;
-		}
-		return false;
+		return ManagePlayer.acceptedCoordinates(x, y, mapPlayer);
 	}
 
 	public int[] getCoordinatesFromPlayer(String namePlayer) {
-		Scanner sc = new Scanner(System.in);
-		System.out.println(namePlayer + ", nhập tọa độ bắn (dạng: x y): ");
-		int x = sc.nextInt();
-		int y = sc.nextInt();
-		--x;
-		--y;
-		while (acceptedCoordinates(x, y) == false) {
-			System.out.println("Vui lòng nhập lại tọa độ:");
-			x = sc.nextInt();
-			y = sc.nextInt();
-		}
-		return new int[] { x, y };
+		return ManagePlayer.getCoordinatesFromPlayer(namePlayer, mapPlayer);
 	}
 
 }

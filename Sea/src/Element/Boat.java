@@ -3,6 +3,7 @@ package Element;
 import java.util.ArrayList;
 
 public class Boat {
+	private int numOfShip = 5;
 	private BoatType type;
 	private ArrayList<int[]> coordinates;
 	private int size;
@@ -40,6 +41,7 @@ public class Boat {
 		}
 		if (size == 0) {
 			hadSunk = true;
+			numOfShip--;
 			return true;
 		} else
 			return false;
@@ -60,4 +62,9 @@ public class Boat {
 	public ArrayList<int[]> getCoordinates() {
 		return coordinates;
 	}
+
+	public int getNumOfShip() {
+		return numOfShip;
+	}
+
 }

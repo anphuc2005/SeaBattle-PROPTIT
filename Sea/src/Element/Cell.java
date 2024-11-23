@@ -44,4 +44,14 @@ public class Cell {
 		}
 	}
 
+	public String toString(boolean choice, boolean checkHit) {
+		if (isHit) {
+			return hasBoat ? Color.red + " X" + Color.ANSI_Reset : Color.purple + " O" + Color.ANSI_Reset;
+		} else if (!isHit) {
+			return hasBoat ? Color.blue + " T" + Color.ANSI_Reset : "~";
+		} else {
+			return "~";
+		}
+	}
+
 }
