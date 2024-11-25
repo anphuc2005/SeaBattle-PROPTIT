@@ -6,9 +6,9 @@ public class Player {
 	static char Hang = 'A';
 	static int Cot = 1;
 	private String namePlayer;
-	private ArrayList<Boat> boats;
-	private Cell[][] mapPlayer;
-	private int numOfShip;
+	protected ArrayList<Boat> boats;
+	protected Cell[][] mapPlayer;
+	private int numOfShip = 5;
 
 	public Player(String namePlayer, ArrayList<Boat> boats, Cell[][] mapPlayer) {
 		this.namePlayer = namePlayer;
@@ -33,6 +33,7 @@ public class Player {
 	}
 
 	public void setNumOfShip(int numOfShip) {
+		numOfShip = -1;
 		this.numOfShip = numOfShip;
 	}
 

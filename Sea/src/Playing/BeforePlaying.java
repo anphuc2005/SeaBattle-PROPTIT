@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import Element.Boat;
 import Element.BoatType;
+import Element.Bot;
 import Element.Cell;
 import Element.Player;
 import Element.PlayerOpponent;
@@ -109,6 +110,24 @@ public class BeforePlaying {
 			player.mapSetUp();
 	}
 
+	public void setUpBoatsForBot(Bot player2) {
+		for (BoatType type : BoatType.values()) {
+			for (int i = 0; i < type.getSoLuong(); i++) {
+				boolean placed = false;
+				while (!placed) {
+					int x = random.nextInt(player2.getMapPlayer().length);
+					int y = random.nextInt(player2.getMapPlayer()[0].length);
+					int direction = random.nextInt(2) + 1;
+
+					if (isValidPlacement(player2.getMapPlayer(), x, y, type.getSize(), direction)) {
+						placeBoat(player2, new Boat(type), x, y, direction);
+						placed = true;
+					}
+				}
+			}
+		}
+	}
+
 	private void placeBoat(Player player, Boat boat, int x, int y, int direction) {
 		for (int i = 0; i < boat.getSize(); i++) {
 			if (direction == 1) {
@@ -121,4 +140,5 @@ public class BeforePlaying {
 		}
 		player.getBoats().add(boat);
 	}
+
 }
