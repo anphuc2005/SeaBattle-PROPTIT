@@ -1,4 +1,4 @@
-package Playing;
+package playing;
 
 public class ClearConsole {
 	public void clearConsole() {

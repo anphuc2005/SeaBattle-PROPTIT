@@ -1,17 +1,18 @@
-package Playing;
+package playing;
 
 import java.util.Random;
 import java.util.Scanner;
 
-import Element.Boat;
-import Element.BoatType;
-import Element.Bot;
-import Element.Cell;
-import Element.Player;
-import Element.PlayerOpponent;
+import Main.Input;
+import element.Boat;
+import element.BoatType;
+import element.Bot;
+import element.Cell;
+import element.Player;
+import element.PlayerOpponent;
 
 public class BeforePlaying {
-	private static Scanner sc = new Scanner(System.in);
+	static Scanner sc = Input.getScanner();
 	private static Random random = new Random();
 
 	public void setUpBoatsForPlayer(Player player, boolean checkTypeOfSetUp) {

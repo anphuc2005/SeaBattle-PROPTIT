@@ -1,15 +1,16 @@
-package Playing;
+package playing;
 
 import java.util.Scanner;
 
-import Element.Boat;
-import Element.Bot;
-import Element.Player;
-import Element.PlayerOpponent;
+import Main.Input;
+import element.Boat;
+import element.Bot;
+import element.Player;
+import element.PlayerOpponent;
 
 public class GameController {
 	static ClearConsole clear = new ClearConsole();
-	static Scanner sc = new Scanner(System.in);
+	static Scanner sc = Input.getScanner();
 	private Player player1;
 	private PlayerOpponent player2;
 	private Bot bot;
@@ -94,6 +95,7 @@ public class GameController {
 
 		while (true) {
 			if (turn == 0) {
+				System.out.println("Đến lượt của bạn");
 				bot.mapPlaying();
 				System.out.println("Chọn chức năng của bạn");
 				System.out.println("1. Xem map của bạn");
@@ -121,8 +123,9 @@ public class GameController {
 					turn = 1;
 				}
 			} else {
-
+				System.out.println("Đến lượt của bot:");
 				boolean hit = takeTurnWithBot(bot, player1);
+				player1.mapPlaying();
 				if (isGameOver == true) {
 					ScoreBoard scoreBoard = new ScoreBoard(player2.getNamePlayer(), numTurn2, player2.getNumOfShip());
 					ScoreBoard.saveScoreBoard(scoreBoard);
@@ -230,54 +233,47 @@ public class GameController {
 	private boolean takeTurnWithBot(Bot current, Player opponent) {
 		int[] coordinates;
 
-		// Lấy tọa độ từ hàng đợi target nếu bot đang nhắm mục tiêu
 		if (current.inTargetShip()) {
 			coordinates = current.getNextCoordinates(opponent.getMapPlayer());
 		} else {
-			// Ngược lại, chọn tọa độ ngẫu nhiên
 			coordinates = current.getRandomCoordinates(opponent.getMapPlayer());
 		}
 
 		int x = coordinates[0];
 		int y = coordinates[1];
 
-		// Nếu ô này đã bị bắn, không bắn lại, chọn tọa độ khác
 		if (opponent.getMapPlayer()[x][y].isHit()) {
-			return takeTurnWithBot(current, opponent); // Thử với tọa độ khác
+			return takeTurnWithBot(current, opponent);
 		}
 
-		// Đánh dấu ô là đã bắn
 		opponent.getMapPlayer()[x][y].setHit(true);
 
-		// Nếu trúng tàu
 		if (opponent.getMapPlayer()[x][y].hasBoat()) {
-			Effect.isHit(); // Hiển thị hiệu ứng khi trúng
-			current.detechTargetShip(x, y, opponent.getMapPlayer()); // Thêm các ô xung quanh vào hàng đợi
+			Effect.isHit();
+			Effect.delay(2);
+			current.detechTargetShip(x, y, opponent.getMapPlayer());
 
-			// Kiểm tra nếu tàu bị chìm
 			for (Boat boat : opponent.getBoats()) {
 				if (boat.isSunk(x, y)) {
 					Effect.isSunk();
 					System.out.println(Color.purple + "Tàu " + boat.getName() + " đã bị chìm!" + Color.ANSI_Reset);
-					current.getTargetHit().clear(); // Xóa hàng đợi nếu tàu chìm
+					current.getTargetHit().clear();
 					opponent.setNumOfShip(boat.getNumOfShip());
 					break;
 				}
 			}
-
-			// Kiểm tra nếu trò chơi kết thúc
+			Effect.delay(2);
 			if (checkGameOver(opponent)) {
 				System.out.println("Tất cả tàu của " + opponent.getNamePlayer() + " đã bị tiêu diệt!");
 				Effect.isVictory();
 				isGameOver = true;
 				return true;
 			}
-
-			return true; // Nếu trúng, bot được bắn tiếp
+			return true;
 		} else {
-			// Nếu bot bắn trượt
+			Effect.delay(2);
 			Effect.isMiss();
-			return false; // Kết thúc lượt bot
+			return false;
 		}
 	}
 

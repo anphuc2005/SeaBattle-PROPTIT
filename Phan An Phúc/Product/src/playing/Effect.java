@@ -1,4 +1,4 @@
-package Playing;
+package playing;
 
 public class Effect {
 	public static void isHit() {
@@ -31,5 +31,14 @@ public class Effect {
 				+ "|  |\\/|  | |  |     \\   \\        \\   \\    \r\n"
 				+ "|  |  |  | |  | .----)   |   .----)   |   \r\n" + "|__|  |__| |__| |_______/    |_______/    "
 				+ Color.ANSI_Reset);
+	}
+
+	public static void delay(int seconds) {
+		try {
+			Thread.sleep(seconds * 1000);
+		} catch (InterruptedException e) {
+			System.err.println("Đã xảy ra lỗi khi delay: " + e.getMessage());
+			Thread.currentThread().interrupt();
+		}
 	}
 }

@@ -1,4 +1,4 @@
-package Playing;
+package playing;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

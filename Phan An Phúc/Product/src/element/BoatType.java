@@ -1,4 +1,4 @@
-package Element;
+package element;
 
 public enum BoatType {
 	PATROL_BOAT("Tàu tuần tra", 2, 2), SUBMARINE("Tàu ngầm", 3, 1), DESTROYER_BOAT("Tàu khu trục", 4, 1),

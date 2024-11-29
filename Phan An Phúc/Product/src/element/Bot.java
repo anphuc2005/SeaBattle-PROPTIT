@@ -1,4 +1,4 @@
-package Element;
+package element;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -13,8 +13,8 @@ public class Bot extends Player {
 
 	public Bot(String namePlayer, ArrayList<Boat> boats, Cell[][] mapPlayer) {
 		super(namePlayer, boats, mapPlayer);
-		this.targetHit = new ArrayList<>(); // Khởi tạo danh sách các ô cần target
-		this.random = new Random(); // Khởi tạo Random
+		this.targetHit = new ArrayList<>();
+		this.random = new Random();
 	}
 
 	public boolean inTargetShip() {
@@ -22,35 +22,34 @@ public class Bot extends Player {
 	}
 
 	public void detechTargetShip(int x, int y, Cell[][] map) {
-		// Kiểm tra hàng ngang
+		// Kiểm tra row xem vị trí x-1 và x+1 bị bắn chưa
 		boolean hitLeft = (y > 0 && map[x][y - 1].isHit() && map[x][y - 1].hasBoat());
 		boolean hitRight = (y < map[0].length - 1 && map[x][y + 1].isHit() && map[x][y + 1].hasBoat());
 
 		if (hitLeft || hitRight) {
 			if (y > 0 && !map[x][y - 1].isHit()) {
-				targetHit.add(new int[] { x, y - 1 }); // Thêm ô bên trái
+				targetHit.add(new int[] { x, y - 1 });
 			}
 			if (y < map[0].length - 1 && !map[x][y + 1].isHit()) {
-				targetHit.add(new int[] { x, y + 1 }); // Thêm ô bên phải
+				targetHit.add(new int[] { x, y + 1 });
 			}
-			return; // Ưu tiên hàng ngang, không thêm ô dọc
+			return;
 		}
 
-		// Kiểm tra cột dọc
+		// Kiểm tra column xem vị trí y-1 và y+1 bị bắn chưa
 		boolean hitUp = (x > 0 && map[x - 1][y].isHit() && map[x - 1][y].hasBoat());
 		boolean hitDown = (x < map.length - 1 && map[x + 1][y].isHit() && map[x + 1][y].hasBoat());
 
 		if (hitUp || hitDown) {
 			if (x > 0 && !map[x - 1][y].isHit()) {
-				targetHit.add(new int[] { x - 1, y }); // Thêm ô trên
+				targetHit.add(new int[] { x - 1, y });
 			}
 			if (x < map.length - 1 && !map[x + 1][y].isHit()) {
-				targetHit.add(new int[] { x + 1, y }); // Thêm ô dưới
+				targetHit.add(new int[] { x + 1, y });
 			}
-			return; // Ưu tiên cột dọc, không thêm ô ngang
+			return;
 		}
 
-		// Nếu không phát hiện hướng, thêm tất cả 4 ô xung quanh
 		if (x > 0 && !map[x - 1][y].isHit())
 			targetHit.add(new int[] { x - 1, y });
 		if (x < map.length - 1 && !map[x + 1][y].isHit())

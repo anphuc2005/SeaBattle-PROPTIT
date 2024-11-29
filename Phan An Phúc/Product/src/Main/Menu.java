@@ -3,19 +3,19 @@ package Main;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import Element.Boat;
-import Element.Bot;
-import Element.Cell;
-import Element.Player;
-import Element.PlayerOpponent;
-import Playing.BeforePlaying;
-import Playing.ClearConsole;
-import Playing.Color;
-import Playing.GameController;
-import Playing.ScoreBoard;
+import element.Boat;
+import element.Bot;
+import element.Cell;
+import element.Player;
+import element.PlayerOpponent;
+import playing.BeforePlaying;
+import playing.ClearConsole;
+import playing.Color;
+import playing.GameController;
+import playing.ScoreBoard;
 
 public class Menu {
-	static Scanner sc = new Scanner(System.in);
+	static Scanner sc = Input.getScanner();
 	static ClearConsole clear = new ClearConsole();
 
 	public void Menu() {

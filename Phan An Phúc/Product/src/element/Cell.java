@@ -1,6 +1,6 @@
-package Element;
+package element;
 
-import Playing.Color;
+import playing.Color;
 
 public class Cell {
 	private boolean isHit;

@@ -1,4 +1,6 @@
-package Element;
+package element;
+
+import Main.Input;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -6,7 +8,7 @@ import java.util.Scanner;
 public class ManagePlayer {
 	static char Hang = 'A';
 	static int Cot = 1;
-	static Scanner sc = new Scanner(System.in);
+	static Scanner sc = Input.getScanner();
 	private static Random random = new Random();
 
 	public static void mapWhilePlaying(Cell[][] mapPlayer) {

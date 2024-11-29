@@ -1,4 +1,4 @@
-package Playing;
+package playing;
 
 public class Color {
 	public static final String ANSI_Reset = "\u001B[0m";
