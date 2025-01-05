@@ -16,6 +16,14 @@ The project was done by [Phan An Phúc](https://github.com/anphuc2005), in the c
 - Open the project in your IDE
 - Run the project
 
+### **Gameplay video:** https://youtu.be/ZBr-b8L218I
+### **Images**:
+
+![Alt text](image.png)
+![Alt text](image1.png)
+![Alt text](image2.png)
+![Alt text](image3.png)
+![Alt text](image4.png)
 
 ## Usage
 
