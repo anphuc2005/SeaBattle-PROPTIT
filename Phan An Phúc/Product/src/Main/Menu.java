@@ -132,9 +132,18 @@ public class Menu {
 
 		System.out.println("\nAll the ships have been placed. Game started!");
 		clear.clearConsole();
-		GameController gameController = new GameController(player1, player2);
-		gameController.startGame();
-
+		System.out.println("Do you want to turn on the Item Mode");
+		System.out.println("Yes / No");
+		String choice = sc.nextLine();
+		if (choice.equalsIgnoreCase("yes")) {
+			GameController gameController = new GameController(player1, player2,true);
+			gameController.startGame();
+		}
+		else 
+		{
+			GameController gameController = new GameController(player1, player2,false);
+			gameController.startGame();
+		}			
 		System.out.println("Game over!");
 
 	}

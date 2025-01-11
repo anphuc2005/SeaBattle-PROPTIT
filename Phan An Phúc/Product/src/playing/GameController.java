@@ -12,14 +12,16 @@ public class GameController {
 	static Scanner sc = Input.getScanner();
 	private Player player1;
 	private PlayerOpponent player2;
+	private boolean turnOnItemMode;
 	private Bot bot;
 	public int numTurn1 = 1;
 	public int numTurn2 = 1;
 	boolean isGameOver;
 
-	public GameController(Player player1, PlayerOpponent player2) {
+	public GameController(Player player1, PlayerOpponent player2, boolean turnOnItemMode) {
 		this.player1 = player1;
 		this.player2 = player2;
+		this.turnOnItemMode = turnOnItemMode;
 	}
 
 	public GameController(Player player1, Bot player2) {
@@ -29,7 +31,6 @@ public class GameController {
 
 	public void startGame() {
 		int turn = 0;
-
 		while (true) {
 			if (turn == 0) {
 				clear.clearConsole();
@@ -37,6 +38,8 @@ public class GameController {
 				System.out.println("Show your functions");
 				System.out.println("1. Watch my map");
 				System.out.println("2. Shot");
+				System.out.println("3. Buy Item");
+				System.out.println("4. Use Item");
 				int choice = Integer.parseInt(sc.nextLine());
 				boolean hit = false;
 				switch (choice) {
@@ -44,6 +47,12 @@ public class GameController {
 					player1.mapPlayingAfterShot();
 				case 2:
 					hit = takeTurn(player1, player2);
+					break;
+				case 3:
+					Shop.ShopStore(player1);
+					break;
+				case 4:
+					Shop.useItem(player1,player2);
 					break;
 				}
 				if (isGameOver == true) {
@@ -166,9 +175,18 @@ public class GameController {
 		}
 
 		if (opponent.getMapPlayer()[x][y].hasBoat()) {
-			opponent.getMapPlayer()[x][y].setHit(true);
-			Effect.isHit();
-			Effect.delay(3);
+			if(opponent.getMapPlayer()[x][y].isShield())
+			{
+				Effect.isHit();
+				Effect.delay(3);
+				opponent.getMapPlayer()[x][y].setShield(false);
+			}
+			else
+			{
+				opponent.getMapPlayer()[x][y].setHit(true);
+				Effect.isHit();
+				Effect.delay(3);
+			}
 //			opponent.mapPlaying();
 
 			for (Boat boat : opponent.getBoats()) {

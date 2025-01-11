@@ -32,7 +32,13 @@ public class Effect {
 				+ "|  |  |  | |  | .----)   |   .----)   |   \r\n" + "|__|  |__| |__| |_______/    |_______/    "
 				+ Color.ANSI_Reset);
 	}
-
+	public static void isBrokenShield()
+	{
+		System.out.println(Color.red + " ___ _    _     _    _   ___         _            \r\n" + //
+				"/ __| |_ (_)___| |__| | | _ )_ _ ___| |_____ _ _  \r\n" + //
+				"\\__ \\ ' \\| / -_) / _` | | _ \\ '_/ _ \\ / / -_) ' \\ \r\n" + //
+				"|___/_||_|_\\___|_\\__,_| |___/_| \\___/_\\_\\___|_||_|" + Color.ANSI_Reset);
+	}
 	public static void delay(int seconds) {
 		try {
 			Thread.sleep(seconds * 1000);

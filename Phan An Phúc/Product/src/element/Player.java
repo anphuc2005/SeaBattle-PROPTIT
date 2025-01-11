@@ -9,11 +9,19 @@ public class Player {
 	protected ArrayList<Boat> boats;
 	protected Cell[][] mapPlayer;
 	private int numOfShip = 5;
+	private int money;
 
 	public Player(String namePlayer, ArrayList<Boat> boats, Cell[][] mapPlayer) {
 		this.namePlayer = namePlayer;
 		this.boats = boats;
 		this.mapPlayer = mapPlayer;
+	}
+	public int getMoney() {
+		return money;
+	}
+	
+	public void setMoney(int money) {
+		this.money = money;
 	}
 
 	public String getNamePlayer() {

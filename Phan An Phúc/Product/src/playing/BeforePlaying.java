@@ -50,7 +50,7 @@ public class BeforePlaying {
 						}
 					}
 				}
-			}
+			} 
 		}
 		if (checkTypeOfSetUp == false)
 			player.mapSetUp();
@@ -142,5 +142,5 @@ public class BeforePlaying {
 		}
 		player.getBoats().add(boat);
 	}
-
+	
 }
