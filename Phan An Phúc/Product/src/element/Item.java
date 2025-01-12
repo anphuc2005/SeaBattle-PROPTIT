@@ -1,15 +1,11 @@
 package element;
 
-public enum Item {
-    DEN_PIN(5, "Light", 0),
-    BOMB(15, "Bomb", 0),
-    SHIELD(7, "Shield", 0);
-
+public class Item {
     private final int gia;
     private final String ten;
-    private int soLuong; 
+    private int soLuong;
 
-    Item(int gia, String ten, int soLuong) {
+    public Item(int gia, String ten, int soLuong) {
         this.gia = gia;
         this.ten = ten;
         this.soLuong = soLuong;
@@ -19,7 +15,7 @@ public enum Item {
         return gia;
     }
 
-    public String getTen() { 
+    public String getTen() {
         return ten;
     }
 
@@ -28,6 +24,6 @@ public enum Item {
     }
 
     public void setSoLuong(int soLuong) {
-        this.soLuong = soLuong; 
+        this.soLuong = soLuong;
     }
 }

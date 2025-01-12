@@ -34,12 +34,16 @@ public class GameController {
 		while (true) {
 			if (turn == 0) {
 				clear.clearConsole();
+				System.out.println("Let's " + player1.getNamePlayer() + " turn");
 				player2.mapPlaying();
 				System.out.println("Show your functions");
 				System.out.println("1. Watch my map");
 				System.out.println("2. Shot");
-				System.out.println("3. Buy Item");
-				System.out.println("4. Use Item");
+				if(turnOnItemMode)
+				{
+					System.out.println("3. Buy Item");
+					System.out.println("4. Use Item");
+				}
 				int choice = Integer.parseInt(sc.nextLine());
 				boolean hit = false;
 				switch (choice) {
@@ -49,10 +53,10 @@ public class GameController {
 					hit = takeTurn(player1, player2);
 					break;
 				case 3:
-					Shop.ShopStore(player1);
+					player1.getShop().ShopStore(player1);				
 					break;
 				case 4:
-					Shop.useItem(player1,player2);
+					player1.getShop().useItem(player1, player2);
 					break;
 				}
 				if (isGameOver == true) {
@@ -61,19 +65,31 @@ public class GameController {
 					System.out.println("Game Over! Your scores have been saved");
 					break;
 				}
+				if(choice == 3 || choice == 4)
+				{
+					clear.clearConsole();
+					turn = 0;
+				}
 				if (hit) {
 					System.out.println("Player1 keep shotting!");
 					numTurn1++;
-				} else {
+				}
+				else {
 					clear.clearConsole();
 					turn = 1;
 				}
 			} else {
 				clear.clearConsole();
+				System.out.println("Let's " + player2.getNamePlayer() + " turn");
 				player1.mapPlaying();
 				System.out.println("Show your functions");
 				System.out.println("1. Watch my map");
 				System.out.println("2. Shot");
+				if(turnOnItemMode)
+				{
+					System.out.println("3. Buy Item");
+					System.out.println("4. Use Item");
+				}
 				int choice = Integer.parseInt(sc.nextLine());
 				boolean hit = false;
 				switch (choice) {
@@ -82,12 +98,23 @@ public class GameController {
 				case 2:
 					hit = takeTurn(player2, player1);
 					break;
+				case 3:
+					player2.getShop().ShopStore(player2);					
+					break;
+				case 4:
+					player2.getShop().useItem(player2, player1);
+					break;
 				}
 				if (isGameOver == true) {
 					ScoreBoard scoreBoard = new ScoreBoard(player2.getNamePlayer(), numTurn2, player2.getNumOfShip());
 					ScoreBoard.saveScoreBoard(scoreBoard);
 					System.out.println("Game Over! Your scores have been saved");
 					break;
+				}
+				if(choice == 3 || choice == 4)
+				{
+					clear.clearConsole();
+					turn = 0;
 				}
 				if (hit) {
 					System.out.println("Player2 keep shotting!");
@@ -175,9 +202,10 @@ public class GameController {
 		}
 
 		if (opponent.getMapPlayer()[x][y].hasBoat()) {
+			current.setMoney(5);
 			if(opponent.getMapPlayer()[x][y].isShield())
 			{
-				Effect.isHit();
+				Effect.isBrokenShield();
 				Effect.delay(3);
 				opponent.getMapPlayer()[x][y].setShield(false);
 			}
@@ -194,6 +222,8 @@ public class GameController {
 					Effect.isSunk();
 					System.out.println(Color.purple + "Ship " + boat.getName() + " has been sunk!" + Color.ANSI_Reset);
 					opponent.setNumOfShip(boat.getNumOfShip());
+					System.out.println(Color.purple + "Bonus Money!!!" + Color.ANSI_Reset);
+					current.setMoney(10);
 					Effect.delay(3);
 					clear.clearConsole();
 				}

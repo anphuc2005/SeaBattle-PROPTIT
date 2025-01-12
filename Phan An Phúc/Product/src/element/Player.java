@@ -1,6 +1,7 @@
 package element;
 
 import java.util.ArrayList;
+import playing.Shop;
 
 public class Player {
 	static char Hang = 'A';
@@ -8,20 +9,25 @@ public class Player {
 	private String namePlayer;
 	protected ArrayList<Boat> boats;
 	protected Cell[][] mapPlayer;
+	private Shop shopPlayer;
 	private int numOfShip = 5;
-	private int money;
+	private int money = 0;
 
 	public Player(String namePlayer, ArrayList<Boat> boats, Cell[][] mapPlayer) {
 		this.namePlayer = namePlayer;
 		this.boats = boats;
 		this.mapPlayer = mapPlayer;
+		this.shopPlayer = new Shop();
 	}
 	public int getMoney() {
 		return money;
 	}
-	
+	public Shop getShop()
+	{
+		return shopPlayer;
+	}
 	public void setMoney(int money) {
-		this.money = money;
+		this.money += money;
 	}
 
 	public String getNamePlayer() {
