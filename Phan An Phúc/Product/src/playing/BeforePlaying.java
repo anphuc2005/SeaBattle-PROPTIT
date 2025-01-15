@@ -53,7 +53,7 @@ public class BeforePlaying {
 			} 
 		}
 		if (checkTypeOfSetUp == false)
-			player.mapSetUp();
+			player.mapPlayingAfterShot();
 	}
 
 	private boolean isValidPlacement(Cell[][] map, int x, int y, int size, int direction) {
@@ -109,7 +109,7 @@ public class BeforePlaying {
 			}
 		}
 		if (checkTypeOfSetUp == false)
-			player.mapSetUp();
+			player.mapPlayingAfterShot();
 	}
 
 	public void setUpBoatsForBot(Bot player2) {

@@ -11,7 +11,7 @@ public class Player {
 	protected Cell[][] mapPlayer;
 	private Shop shopPlayer;
 	private int numOfShip = 5;
-	private int money = 0;
+	private int money ;
 
 	public Player(String namePlayer, ArrayList<Boat> boats, Cell[][] mapPlayer) {
 		this.namePlayer = namePlayer;
@@ -51,8 +51,8 @@ public class Player {
 		this.numOfShip = numOfShip;
 	}
 
-	public void mapPlaying() {
-		ManagePlayer.mapWhilePlaying(mapPlayer);
+	public void mapPlaying(Cell[][] mapPlayer2) {
+		ManagePlayer.mapWhilePlaying(mapPlayer, mapPlayer2);
 	}
 
 	public void mapSetUp() {

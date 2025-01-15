@@ -107,7 +107,7 @@ System.out.println(Color.cyan + "██╗    ██╗███████╗�
 
     public void activeItem(Player current, Player opponent, String nameItem) {
         ClearConsole.clearConsole();
-        current.mapPlaying();
+        opponent.mapSetUp();
         System.out.println("Nhập tọa độ bạn muốn sử dụng:");
         System.out.println("Nhập tọa độ x: ");
         int x = sc.nextInt();
@@ -120,11 +120,11 @@ System.out.println(Color.cyan + "██╗    ██╗███████╗�
         if (ManagePlayer.acceptedCoordinates(x, y, current.getMapPlayer())) {
             if (nameItem.equalsIgnoreCase("Light")) {
                 opponent.getMapPlayer()[x][y].hasLight();
-                current.mapPlayingAfterShot();
+                opponent.mapSetUp();
 
             } else if (nameItem.equalsIgnoreCase("Bomb")) {
                 opponent.getMapPlayer()[x][y].setHit(true);
-                current.mapPlayingAfterShot();
+                opponent.mapSetUp();
                 while(true)
                 {
                     if(x >= 0 && x + 1 < opponent.getMapPlayer().length && y >= 0 && y+1 < opponent.getMapPlayer()[0].length)
@@ -145,7 +145,7 @@ System.out.println(Color.cyan + "██╗    ██╗███████╗�
                 }
             } else if (nameItem.equalsIgnoreCase("Shield")) {
                 current.getMapPlayer()[x][y].setShield(true);
-                current.mapSetUp();
+                current.mapPlayingAfterShot();
             }
         }
     }

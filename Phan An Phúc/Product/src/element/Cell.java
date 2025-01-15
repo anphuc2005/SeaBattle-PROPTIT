@@ -52,7 +52,7 @@ public class Cell {
 	}
 
 	public String toString(boolean choice) {
-		if (hasBoat && light) {
+		if (hasBoat || light) {
 			return Color.blue + " T"  + Color.ANSI_Reset;
 		} 
 		else if(light)
@@ -68,7 +68,7 @@ public class Cell {
 		if (isHit) {
 			return hasBoat ? Color.red + " X" + Color.ANSI_Reset : Color.purple + " O" + Color.ANSI_Reset;
 		} else if (!isHit) {
-			if (hasBoat && light) {
+			if (hasBoat ) {
 				return Color.blue + " T"  + Color.ANSI_Reset;
 			} 
 			else if(light)

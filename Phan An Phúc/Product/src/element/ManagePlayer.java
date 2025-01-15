@@ -10,24 +10,43 @@ public class ManagePlayer {
 	static Scanner sc = Input.getScanner();
 	private static Random random = new Random();
 
-	public static void mapWhilePlaying(Cell[][] mapPlayer) {
-		Cot = 1;
-		Hang = 'A';
+	public static void mapWhilePlaying(Cell[][] mapPlayer1, Cell[][] mapPlayer2) {
+		char rowLabel = 'A';
+
+		// Print the column headers for both maps
 		System.out.print("   ");
-		for (int j = 1; j <= mapPlayer[0].length; ++j) {
+		for (int j = 1; j <= mapPlayer1[0].length; ++j) {
+			System.out.printf("| %2d  ", j);
+		}
+		System.out.print("|   ~~~   ");
+		for (int j = 1; j <= mapPlayer2[0].length; ++j) {
 			System.out.printf("| %2d  ", j);
 		}
 		System.out.println("|");
+
+		// Print the horizontal divider for both maps
 		System.out.print("   ");
-		for (int j = 1; j <= mapPlayer[0].length; ++j) {
+		for (int j = 1; j <= mapPlayer1[0].length; ++j) {
+			System.out.print("+-----");
+		}
+		System.out.print("+   ~~~   ");
+		for (int j = 1; j <= mapPlayer2[0].length; ++j) {
 			System.out.print("+-----");
 		}
 		System.out.println("+");
 
-		for (int i = 0; i < mapPlayer.length; i++) {
-			System.out.printf(" %c ", Hang++);
-			for (int j = 0; j < mapPlayer[i].length; j++) {
-				System.out.printf("| %2s  ", mapPlayer[i][j].toString());
+		// Print the rows of both maps side by side
+		for (int i = 0; i < mapPlayer1.length; i++) {
+			// Print the row label and the content of the first map
+			System.out.printf(" %c ", rowLabel++);
+			for (int j = 0; j < mapPlayer1[i].length; j++) {
+				System.out.printf("| %2s  ", mapPlayer1[i][j].toString());
+			}
+			System.out.print("|   ~~~   ");
+
+			// Print the content of the second map
+			for (int j = 0; j < mapPlayer2[i].length; j++) {
+				System.out.printf("| %2s  ", mapPlayer2[i][j].toString(true,true));
 			}
 			System.out.println("|");
 		}
@@ -50,7 +69,7 @@ public class ManagePlayer {
 		for (int i = 0; i < mapPlayer.length; i++) {
 			System.out.printf(" %c ", Hang++);
 			for (int j = 0; j < mapPlayer[i].length; j++) {
-				System.out.printf("| %2s  ", mapPlayer[i][j].toString(true, true));
+				System.out.printf("| %2s  ", mapPlayer[i][j].toString(true));
 			}
 			System.out.println("|");
 		}
@@ -73,7 +92,7 @@ public class ManagePlayer {
 		for (int i = 0; i < mapPlayer.length; i++) {
 			System.out.printf(" %c ", Hang++);
 			for (int j = 0; j < mapPlayer[i].length; j++) {
-				System.out.printf("| %2s  ", mapPlayer[i][j].toString(true));
+				System.out.printf("| %2s  ", mapPlayer[i][j].toString());
 			}
 			System.out.println("|");
 		}

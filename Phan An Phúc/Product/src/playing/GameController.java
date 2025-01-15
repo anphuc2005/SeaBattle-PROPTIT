@@ -35,7 +35,7 @@ public class GameController {
 			if (turn == 0) {
 				clear.clearConsole();
 				System.out.println("Let's " + player1.getNamePlayer() + " turn");
-				player2.mapPlaying();
+				player2.mapPlaying(player1.getMapPlayer());
 				System.out.println("Show your functions");
 				System.out.println("1. Watch my map");
 				System.out.println("2. Shot");
@@ -70,7 +70,7 @@ public class GameController {
 					clear.clearConsole();
 					turn = 0;
 				}
-				if (hit) {
+				else if (hit) {
 					System.out.println("Player1 keep shotting!");
 					numTurn1++;
 				}
@@ -81,7 +81,7 @@ public class GameController {
 			} else {
 				clear.clearConsole();
 				System.out.println("Let's " + player2.getNamePlayer() + " turn");
-				player1.mapPlaying();
+				player1.mapPlaying(player2.getMapPlayer());
 				System.out.println("Show your functions");
 				System.out.println("1. Watch my map");
 				System.out.println("2. Shot");
@@ -114,9 +114,9 @@ public class GameController {
 				if(choice == 3 || choice == 4)
 				{
 					clear.clearConsole();
-					turn = 0;
+					turn = 1;
 				}
-				if (hit) {
+				else if (hit) {
 					System.out.println("Player2 keep shotting!");
 					numTurn2++;
 				} else {
@@ -134,7 +134,7 @@ public class GameController {
 			if (turn == 0) {
 				clear.clearConsole();
 				System.out.println("Your turn!");
-				bot.mapPlaying();
+				bot.mapPlaying(player1.getMapPlayer());
 				System.out.println("Show your functions");
 				System.out.println("1. Watch my map");
 				System.out.println("2. Shot");
@@ -164,7 +164,7 @@ public class GameController {
 				clear.clearConsole();
 				System.out.println("Bot turn!");
 				boolean hit = takeTurnWithBot(bot, player1);
-				player1.mapPlaying();
+				player1.mapPlaying(bot.getMapPlayer());
 				Effect.delay(4);
 				if (isGameOver == true) {
 					ScoreBoard scoreBoard = new ScoreBoard(player2.getNamePlayer(), numTurn2, player2.getNumOfShip());
